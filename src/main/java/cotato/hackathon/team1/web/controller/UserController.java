@@ -2,6 +2,7 @@ package cotato.hackathon.team1.web.controller;
 
 import cotato.hackathon.team1.domain.service.UserService;
 import cotato.hackathon.team1.web.dto.AddEmailResponse;
+import cotato.hackathon.team1.web.dto.BuyItemRequest;
 import cotato.hackathon.team1.web.dto.EmailRequest;
 import cotato.hackathon.team1.web.dto.PointResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,5 +34,11 @@ public class UserController {
     @GetMapping("/point")
     public ResponseEntity<PointResponse> getUserPoint(@RequestParam("key") String key) {
         return ResponseEntity.ok().body(userService.findUserPointByKey(key));
+    }
+
+    @Operation(summary = "유저 포인트 사용 API")
+    @PostMapping("/point")
+    public ResponseEntity<?> usePoint(@RequestBody BuyItemRequest request) {
+        return ResponseEntity.ok().body(userService.buyItem(request));
     }
 }

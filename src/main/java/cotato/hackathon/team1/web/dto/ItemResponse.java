@@ -15,7 +15,7 @@ public record ItemResponse(
         return new ItemResponse(
                 item.getId(),
                 item.getName(),
-                item.getPoint()
+                item.getPrice()
         );
     }
 }

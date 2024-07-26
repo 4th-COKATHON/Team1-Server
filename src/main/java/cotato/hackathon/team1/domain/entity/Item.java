@@ -23,16 +23,16 @@ public class Item extends BaseTimeEntity {
     @Column(name = "item_name", nullable = false)
     private String name;
 
-    @Column(name = "item_point", nullable = false)
-    private Long point;
+    @Column(name = "item_price", nullable = false)
+    private Long price;
 
     @Column(name = "item_quantity", nullable = false)
     private Long quantity;
 
     @Builder
-    public Item(String name, Long point, Long quantity) {
+    public Item(String name, Long price, Long quantity) {
         this.name = name;
-        this.point = point;
+        this.price = price;
         this.quantity = quantity;
     }
 // 수량 있음?

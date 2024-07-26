@@ -37,4 +37,10 @@ public class User extends BaseTimeEntity {
         this.key = key;
         this.point = point;
     }
+
+    public void decreasePoint(Long price) {
+        if (this.point >= price) {
+            this.point -= price;
+        }
+    }
 }
