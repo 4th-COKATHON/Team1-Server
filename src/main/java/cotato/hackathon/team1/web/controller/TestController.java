@@ -1,8 +1,8 @@
-package cotato.hackathon.team1.controller;
+package cotato.hackathon.team1.web.controller;
 
 import cotato.hackathon.team1.common.exception.ImageException;
 import cotato.hackathon.team1.common.s3.S3Uploader;
-import cotato.hackathon.team1.web.dto.ImageUploadRequest;
+import cotato.hackathon.team1.web.dto.SubmitQuestRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ public class TestController {
     }
 
     @PostMapping(value = "/image", consumes = "multipart/form-data")
-    public ResponseEntity<Void> uploadImage(@ModelAttribute ImageUploadRequest request) throws ImageException {
+    public ResponseEntity<Void> uploadImage(@ModelAttribute SubmitQuestRequest request) throws ImageException {
         s3Uploader.uploadFiles(request.image(), "test");
         return ResponseEntity.noContent().build();
     }
