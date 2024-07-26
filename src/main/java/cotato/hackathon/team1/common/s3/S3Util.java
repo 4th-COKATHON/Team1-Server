@@ -1,7 +1,7 @@
-package cotato.hackathon.team1.s3;
+package cotato.hackathon.team1.common.s3;
 
-import cotato.hackathon.team1.exception.ErrorCode;
-import cotato.hackathon.team1.exception.ImageException;
+import cotato.hackathon.team1.common.exception.ErrorCode;
+import cotato.hackathon.team1.common.exception.ImageException;
 import org.springframework.web.multipart.MultipartFile;
 
 public class S3Util {

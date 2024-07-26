@@ -1,13 +1,12 @@
-package cotato.hackathon.team1.s3;
+package cotato.hackathon.team1.common.s3;
 
-import static cotato.hackathon.team1.s3.S3Util.extractFileExtension;
+import static cotato.hackathon.team1.common.s3.S3Util.extractFileExtension;
 
-import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import cotato.hackathon.team1.exception.ErrorCode;
-import cotato.hackathon.team1.exception.ImageException;
+import cotato.hackathon.team1.common.exception.ErrorCode;
+import cotato.hackathon.team1.common.exception.ImageException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

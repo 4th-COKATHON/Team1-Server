@@ -1,4 +1,4 @@
-package cotato.hackathon.team1.s3;
+package cotato.hackathon.team1.common.s3;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

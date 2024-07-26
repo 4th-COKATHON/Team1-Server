@@ -1,4 +1,4 @@
-package cotato.hackathon.team1.config;
+package cotato.hackathon.team1.common.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;

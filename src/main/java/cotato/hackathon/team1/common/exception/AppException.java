@@ -1,4 +1,4 @@
-package cotato.hackathon.team1.exception;
+package cotato.hackathon.team1.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

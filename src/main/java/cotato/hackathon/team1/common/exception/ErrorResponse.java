@@ -1,4 +1,4 @@
-package cotato.hackathon.team1.exception;
+package cotato.hackathon.team1.common.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 
