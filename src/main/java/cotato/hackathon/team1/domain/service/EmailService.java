@@ -27,7 +27,7 @@ public class EmailService {
     public void sendEmail(String email, UUID key) throws MessagingException {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         mimeMessage.addRecipients(RecipientType.TO, email);
-        mimeMessage.setText(getVerificationText(String.valueOf(key)), "utf-8", "html");
+        mimeMessage.setText(getVerificationText(key), "utf-8", "html");
         mimeMessage.setSubject(CODE_SUBJECT);
         mimeMessage.setFrom(getInternetAddress());
         javaMailSender.send(mimeMessage);
@@ -35,7 +35,7 @@ public class EmailService {
         log.info("이메일 전송 완료");
     }
 
-    private String getVerificationText(String key) {
+    private String getVerificationText(UUID key) {
         StringBuilder sb = new StringBuilder();
         return String.valueOf(sb.append(MESSAGE_PREFIX)
                 .append(key)
