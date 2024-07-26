@@ -2,14 +2,19 @@ package cotato.hackathon.team1.domain.service;
 
 import cotato.hackathon.team1.common.exception.ImageException;
 import cotato.hackathon.team1.common.s3.S3Uploader;
+import cotato.hackathon.team1.domain.entity.Location;
 import cotato.hackathon.team1.domain.entity.Quest;
 import cotato.hackathon.team1.domain.entity.QuestHistory;
 import cotato.hackathon.team1.domain.entity.User;
+import cotato.hackathon.team1.domain.repository.LocationRepository;
 import cotato.hackathon.team1.domain.repository.QuestHistoryRepository;
 import cotato.hackathon.team1.domain.repository.QuestRepository;
 import cotato.hackathon.team1.domain.repository.UserRepository;
+import cotato.hackathon.team1.web.dto.QuestResponse;
+import cotato.hackathon.team1.web.dto.QuestsResponse;
 import cotato.hackathon.team1.web.dto.SubmitQuestRequest;
 import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +27,7 @@ public class QuestService {
     private final QuestRepository questRepository;
     private final QuestHistoryRepository questHistoryRepository;
     private final UserRepository userRepository;
+    private final LocationRepository locationRepository;
     private final S3Uploader s3Uploader;
 
     @Transactional
@@ -37,5 +43,20 @@ public class QuestService {
                 .user(findUser)
                 .url(s3Uploader.uploadFiles(request.image(), QUEST_HISTORY_DIR))
                 .build());
+    }
+
+    @Transactional(readOnly = true)
+    public QuestsResponse findAllByLocation(String locationName) {
+
+        Location location = locationRepository.findByName(locationName)
+                .orElseThrow(() -> new EntityNotFoundException("해당 이름의 장소를 찾을 수 없습니다."));
+
+        List<Quest> quests = questRepository.findAllByLocationId(location.getId());
+
+        List<QuestResponse> questResponses = quests.stream()
+                .map(QuestResponse::from)
+                .toList();
+
+        return QuestsResponse.of(locationName, questResponses);
     }
 }
