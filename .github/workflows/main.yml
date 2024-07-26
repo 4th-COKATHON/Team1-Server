@@ -43,7 +43,7 @@ jobs:
 
       # [3] - 1 생성된 jar 파일 이름 변경
       - name: Rename JAR file
-        run: mv build/libs/*.jar build/libs/team1-0.0.1-SNAPSHOT.jar
+        run: mv build/libs/*.jar build/libs/team1-prod-0.0.1-SNAPSHOT.jar
         shell: bash
 
       # [4] docker image build
