@@ -3,7 +3,9 @@ package cotato.hackathon.team1.domain.service;
 import cotato.hackathon.team1.domain.entity.User;
 import cotato.hackathon.team1.domain.repository.UserRepository;
 import cotato.hackathon.team1.web.dto.AddEmailResponse;
+import cotato.hackathon.team1.web.dto.PointResponse;
 import jakarta.mail.MessagingException;
+import jakarta.persistence.EntityNotFoundException;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -44,5 +46,14 @@ public class UserService {
 
     private UUID createRandomAndUniqueKey() {
         return UUID.randomUUID();
+    }
+
+    @Transactional(readOnly = true)
+    public PointResponse findUserPointByKey(final String key) {
+        UUID uuid = UUID.fromString(key);
+        User findUser = userRepository.findByKey(uuid)
+                .orElseThrow(() -> new EntityNotFoundException("해당 키를 가진 고객을 찾을 수 없습니다."));
+
+        return PointResponse.from(findUser);
     }
 }

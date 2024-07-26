@@ -3,14 +3,17 @@ package cotato.hackathon.team1.web.controller;
 import cotato.hackathon.team1.domain.service.UserService;
 import cotato.hackathon.team1.web.dto.AddEmailResponse;
 import cotato.hackathon.team1.web.dto.EmailRequest;
+import cotato.hackathon.team1.web.dto.PointResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -24,5 +27,11 @@ public class UserController {
     @PostMapping("/add")
     public ResponseEntity<AddEmailResponse> addUserEmail(@RequestBody EmailRequest request) throws MessagingException {
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.addUser(request.email()));
+    }
+
+    @Operation(summary = "고유 키 입력 시 잔여 금액 조회 API")
+    @GetMapping("/point")
+    public ResponseEntity<PointResponse> getUserPoint(@RequestParam("key") String key) {
+        return ResponseEntity.ok().body(userService.findUserPointByKey(key));
     }
 }
