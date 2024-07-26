@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.util.UUID;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -29,4 +30,11 @@ public class User extends BaseTimeEntity {
 
     @Column(name = "user_point", nullable = false)
     private Long point;
+
+    @Builder
+    public User(String email, UUID key, Long point) {
+        this.email = email;
+        this.key = key;
+        this.point = point;
+    }
 }
