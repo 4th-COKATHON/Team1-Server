@@ -1,5 +1,6 @@
 package cotato.hackathon.team1.common.exception;
 
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -26,5 +27,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("에러 발생 지점 {}, {}", request.getMethod(), request.getRequestURI());
         ErrorResponse errorResponse = ErrorResponse.of(ErrorCode.IMAGE_EXCEPTION, request);
         return ResponseEntity.status(ErrorCode.IMAGE_EXCEPTION.getHttpStatus()).body(errorResponse);
+    }
+
+    @ExceptionHandler(MessagingException.class)
+    public ResponseEntity<ErrorResponse> handleMessageException(MessagingException e, HttpServletRequest request) {
+        log.error("Message Exception 발생: {}", e.getMessage());
+        log.error("에러 발생 지점 {}, {}", request.getMethod(), request.getRequestURI());
+        ErrorResponse errorResponse = ErrorResponse.of(ErrorCode.MESSAGE_EXCEPTION, request);
+        return ResponseEntity.status(ErrorCode.MESSAGE_EXCEPTION.getHttpStatus()).body(errorResponse);
     }
 }

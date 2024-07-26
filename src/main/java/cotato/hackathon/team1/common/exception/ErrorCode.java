@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 public enum ErrorCode {
 
     IMAGE_EXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR, 5001, "서버 이미지 처리 실패"),
+    MESSAGE_EXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR, 5002 , "이메일 메시지 처리 실패")
     ;
 
     private final HttpStatus httpStatus;
