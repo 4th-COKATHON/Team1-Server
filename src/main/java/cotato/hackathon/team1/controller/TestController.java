@@ -1,8 +1,8 @@
 package cotato.hackathon.team1.controller;
 
-import cotato.hackathon.team1.controller.dto.ImageUploadRequest;
 import cotato.hackathon.team1.common.exception.ImageException;
 import cotato.hackathon.team1.common.s3.S3Uploader;
+import cotato.hackathon.team1.web.dto.ImageUploadRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
